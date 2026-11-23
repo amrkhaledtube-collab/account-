@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2f80ed">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>دفتر الحسابات والنقدية</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f7fb;--card:#fff;--tx:#1d2b3a;--mut:#7b8a9b;--pri:#2f80ed;--tile:#e8f1fe;--grn:#2e9e55;--red:#e5484d;--gb:#d6efdf;--rb:#fbe3e3;--bd:#e6ebf2}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10151c;--card:#19212b;--tx:#e9eef5;--mut:#93a1b3;--pri:#5b9dff;--tile:#223149;--grn:#4cc17a;--red:#ff7b7f;--gb:#1d3a2b;--rb:#412427;--bd:#27313d}}
+:root[data-theme="dark"]{--bg:#10151c;--card:#19212b;--tx:#e9eef5;--mut:#93a1b3;--pri:#5b9dff;--tile:#223149;--grn:#4cc17a;--red:#ff7b7f;--gb:#1d3a2b;--rb:#412427;--bd:#27313d}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;max-width:560px;margin-inline:auto;padding:12px 14px 96px}
+svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:18px;color:var(--pri)}
+.card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 1px 6px #0000000f;border:1px solid var(--bd)}
+.mut{color:var(--mut);font-size:13px}
+.g{color:var(--grn)}.r{color:var(--red)}
+.big{font-size:38px;font-weight:700;line-height:1.2}
+.h3{font-size:20px;font-weight:700;color:var(--pri);margin:14px 2px 10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.bt{border:0;border-radius:10px;padding:14px;font:inherit;font-size:18px;font-weight:700;cursor:pointer}
+.bt.g{background:var(--gb);color:var(--grn)}.bt.r{background:var(--rb);color:var(--red)}
+.bt.p{background:var(--pri);color:#fff}.bt.t{background:var(--tile);color:var(--pri)}
+.tiles{display:flex;gap:18px;margin:6px 4px 4px}
+.tl{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;color:var(--mut);background:none;border:0;font-family:inherit;cursor:pointer}
+.tl i{width:56px;height:56px;border-radius:14px;background:var(--tile);color:var(--pri);display:flex;align-items:center;justify-content:center}
+.seg{display:flex;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:6px;margin-bottom:12px}
+.seg button{flex:1;border:0;background:none;color:var(--mut);padding:12px;border-radius:10px;font:inherit;font-weight:600}
+.seg button.on{background:var(--tile);color:var(--tx)}
+input,select{width:100%;padding:13px;border:1px solid var(--bd);border-radius:12px;background:var(--tile);color:var(--tx);font:inherit;margin:5px 0}
+.pr{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--bd);cursor:pointer}
+.av{width:46px;height:46px;border-radius:12px;background:var(--tile);color:var(--pri);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;flex:none}
+.mid{flex:1;min-width:0}.mid b{display:block;font-size:17px}
+.end{text-align:end;flex:none}.end b{font-size:18px;display:block}
+.tx{display:grid;grid-template-columns:46px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--bd)}
+.ic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700}
+.ic.g{background:var(--gb)}.ic.r{background:var(--rb)}
+.th{width:38px;height:38px;border-radius:8px;object-fit:cover;vertical-align:middle;margin-inline-end:6px;border:1px solid var(--bd)}
+.lk{background:none;border:0;color:var(--mut);font:inherit;font-size:12px;padding:2px 0;text-decoration:underline}
+.fab{position:fixed;bottom:calc(84px + env(safe-area-inset-bottom,0px));inset-inline-start:max(16px,calc(50% - 264px));background:var(--pri);color:#fff;border:0;border-radius:28px;padding:16px 22px;font:inherit;font-size:17px;font-weight:700;display:flex;gap:8px;align-items:center;box-shadow:0 4px 14px #0003}
+.nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--bd);display:flex;justify-content:center;padding:6px 0 calc(6px + env(safe-area-inset-bottom,0px))}
+.nav div{display:flex;width:100%;max-width:560px}
+.nav button{flex:1;background:none;border:0;color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:2px;font:inherit;font-size:12px;font-weight:600;padding:6px}
+.nav button.on{color:var(--pri)}
+#sh{position:fixed;inset:0;background:#0007;display:none;align-items:flex-end;justify-content:center;z-index:20}
+#sh>div{background:var(--card);width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));max-height:92%;overflow:auto}
+.ph{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0}
+.ph label{display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer}
+#pv{max-width:100%;max-height:160px;border-radius:10px;margin-top:6px;display:none}
+#ov{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:30}
+#ov img{max-width:94%;max-height:90%}
+#toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:10px 16px;border-radius:20px;display:none;z-index:40;font-size:14px}
+a{text-decoration:none}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="nav"><div>
+<button id="n1" onclick="go(1)"><svg viewBox="0 0 24 24"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v13c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v13"/></svg>دفتر الديون</button>
+<button id="n2" onclick="go(2)"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18M16 14.5h2"/></svg>دفتر النقدية</button>
+<button id="n3" onclick="go(3)"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></svg>المزيد</button>
+</div></div>
+<div id="sh" onclick="if(event.target==this)cl()"><div id="shc"></div></div>
+<div id="ov" onclick="this.style.display='none'"><img id="ovi" alt=""></div>
+<div id="toast"></div>
+<script>
+/* تشغيل مستقل خارج Claude: تحميل الملفات بالطريقة العادية للمتصفح */
+if(typeof claude==="undefined"){window.claude={use:function(n){return Promise.resolve(n==="downloads"?{save:function(o){var b=o.data instanceof Blob?o.data:new Blob([o.data]),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=o.filename;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},4000);return Promise.resolve({status:"saved"})}}:null)}}}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+<script>
+var S={p:[],t:[],c:[],cu:"ر.س",bn:"دفتري"},T=1,seg="c",q="",cur=null,pend=null;
+try{var raw=localStorage.getItem("kn1");if(raw){var o=JSON.parse(raw);for(var k in o)S[k]=o[k]}}catch(e){}
+function save(){try{localStorage.setItem("kn1",JSON.stringify(S))}catch(e){toast("المساحة ممتلئة: الصور كبيرة")}}
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function m(v){return (v/100).toLocaleString("en-US",{maximumFractionDigits:2})}
+function mc(v){return m(v)+" "+esc(S.cu)}
+function toast(s){var e=$("toast");e.textContent=s;e.style.display="block";setTimeout(function(){e.style.display="none"},2500)}
+var L="ar-EG-u-nu-latn";
+function dt(ts){var d=new Date(ts);return d.toLocaleDateString(L,{day:"numeric",month:"long"})+" ساعة "+d.toLocaleTimeString(L,{hour:"2-digit",minute:"2-digit"})}
+function go(n){T=n;cur=null;render();scrollTo(0,0)}
+function bal(pid){var b=0;S.t.forEach(function(x){if(x.p==pid)b+=x.k=="gave"?x.a:-x.a});return b}
+function sheet(h){$("shc").innerHTML=h;$("sh").style.display="flex"}
+function cl(){$("sh").style.display="none";pend=null}
+function hdr(){return '<div class="hd"><div class="logo"><svg viewBox="0 0 24 24"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v13c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v13"/></svg>'+esc(S.bn)+'</div></div>'}
+function render(){for(var i=1;i<4;i++)$("n"+i).className=T==i?"on":"";$("app").innerHTML=hdr()+(T==1?(cur?party():debts()):T==2?cash():more())}
+
+/* ===== دفتر الديون ===== */
+function dsum(){var a=0,b=0;S.p.forEach(function(p){if(p.ty!=seg)return;var x=bal(p.id);if(x>0)a+=x;else b-=x});return[a,b]}
+function debts(){
+  var s=dsum();
+  return '<div class="seg"><button class="'+(seg=="c"?"on":"")+'" onclick="seg=\'c\';render()">العملاء</button><button class="'+(seg=="s"?"on":"")+'" onclick="seg=\'s\';render()">الموردين</button></div>'+
+  '<div class="card"><div class="mut" style="font-size:16px">أخذت</div><div class="big g">'+mc(s[1])+'</div><div class="mut" style="font-size:16px;margin-top:8px">أعطيت</div><div class="big r">'+mc(s[0])+'</div></div>'+
+  '<div class="h3">'+(seg=="c"?"العملاء":"الموردين")+' ('+S.p.filter(function(p){return p.ty==seg}).length+')</div><input id="qs" placeholder="البحث" value="'+esc(q)+'" oninput="q=this.value;$(\'pl\').innerHTML=plist()"><div id="pl">'+plist()+'</div>'+
+  '<button class="fab" onclick="addPS()"><svg viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c0-4 3-6 6.5-6M18 14v6M15 17h6"/></svg>إضافة '+(seg=="c"?"عميل":"مورد")+'</button>'}
+function plist(){
+  var h="";
+  S.p.filter(function(p){return p.ty==seg&&p.n.indexOf(q)>-1}).forEach(function(p){
+    var b=bal(p.id),last=p.c||0;S.t.forEach(function(x){if(x.p==p.id&&x.d>last)last=x.d});
+    var days=Math.floor((Date.now()-last)/864e5);
+    h+='<div class="pr" onclick="cur=\''+p.id+'\';render()"><div class="av">'+esc(p.n.charAt(0))+'</div><div class="mid"><b>'+esc(p.n)+'</b><span class="mut">مضت '+days+' أيام</span></div><div class="end"><b class="'+(b>0?"r":"g")+'">'+mc(Math.abs(b))+'</b><span class="mut">'+(b>0?"أعطيت":"أخذت")+'</span></div></div>'});
+  return h||'<p class="mut">لا يوجد بعد</p>'}
+function addPS(){sheet('<div class="h3" style="margin-top:0">إضافة '+(seg=="c"?"عميل":"مورد")+'</div><input id="pn" placeholder="الاسم"><input id="pp" placeholder="الموبايل" inputmode="tel"><button class="bt p" style="width:100%;margin-top:8px" onclick="addP()">حفظ</button>')}
+function addP(){var n=$("pn").value.trim();if(!n)return toast("اكتب الاسم");S.p.push({id:id(),n:n,ph:$("pp").value.trim(),ty:seg,c:Date.now()});save();cl();render()}
+function party(){
+  var p=S.p.find(function(x){return x.id==cur}),b=bal(cur),run=0,rows=[];
+  S.t.filter(function(x){return x.p==cur}).sort(function(a,b){return a.d-b.d}).forEach(function(x){run+=x.k=="gave"?x.a:-x.a;rows.push([x,run])});
+  var h=rows.reverse().map(function(r){var x=r[0],g=x.k=="got";
+    return '<div class="tx"><div class="ic '+(g?"g":"r")+'">'+(g?"+":"−")+'</div><div class="mid"><b>'+(g?"أخذت":"أعطيت")+'</b><span class="mut">'+esc(x.no||"")+'<br>'+dt(x.d)+'</span></div><div class="end"><b class="'+(g?"g":"r")+'">'+mc(x.a)+'</b><span class="mut">الرصيد: '+m(Math.abs(r[1]))+'</span><br><button class="lk" onclick="delT(\''+x.id+'\')">حذف</button></div></div>'}).join("");
+  var wa=p.ph?'<a class="bt t" style="text-align:center" target="_blank" href="https://wa.me/'+p.ph.replace(/\D/g,"")+"?text="+encodeURIComponent("تذكير: الرصيد المستحق "+m(Math.abs(b))+" "+S.cu)+'">تذكير واتساب</a>':"";
+  return '<button class="bt t" onclick="cur=null;render()">→ رجوع</button><div class="h3">'+esc(p.n)+'</div><div class="card"><div class="mut">'+(b>0?"أعطيت":"أخذت")+'</div><div class="big '+(b>0?"r":"g")+'">'+mc(Math.abs(b))+'</div><div class="two"><button class="bt g" onclick="tS(\'got\')">+ أخذت</button><button class="bt r" onclick="tS(\'gave\')">− أعطيت</button></div>'+(wa?'<div style="margin-top:10px;display:grid">'+wa+'</div>':"")+'</div><div class="h3">المعاملات ('+rows.length+')</div><div class="card" style="padding:4px 16px">'+(h||'<p class="mut">لا توجد معاملات</p>')+'</div>'}
+function tS(k){sheet('<div class="h3" style="margin-top:0">'+(k=="got"?"أخذت":"أعطيت")+'</div><input id="ta" type="number" inputmode="decimal" placeholder="المبلغ"><input id="tn" placeholder="ملاحظة"><button class="bt '+(k=="got"?"g":"r")+'" style="width:100%;margin-top:8px" onclick="addT(\''+k+'\')">حفظ</button>')}
+function addT(k){var a=Math.round(parseFloat($("ta").value)*100);if(!(a>0))return toast("اكتب مبلغًا صحيحًا");S.t.push({id:id(),p:cur,k:k,a:a,no:$("tn").value.trim(),d:Date.now()});save();cl();render()}
+function delT(i){if(confirm("حذف المعاملة؟")){S.t=S.t.filter(function(x){return x.id!=i});save();render()}}
+
+/* ===== دفتر النقدية ===== */
+function cash(){
+  var rc=0,sp=0,run=0,rows=[];
+  S.c.slice().sort(function(a,b){return a.d-b.d}).forEach(function(x){if(x.k=="r"){rc+=x.a;run+=x.a}else{sp+=x.a;run-=x.a}rows.push([x,run])});
+  var h=rows.reverse().map(function(r){var x=r[0],g=x.k=="r";
+    return '<div class="tx"><div class="ic '+(g?"g":"r")+'">'+(g?"+":"−")+'</div><div class="mid"><b>'+(g?"دخل":"مصروف")+'</b><span class="mut">'+(x.im?'<img class="th" src="'+x.im+'" onclick="big(\''+x.id+'\')" alt="">':"")+esc(x.no||"")+'<br>'+dt(x.d)+'</span></div><div class="end"><b class="'+(g?"g":"r")+'">'+mc(x.a)+'</b><span class="mut">الرصيد: '+m(r[1])+'</span><br><button class="lk" onclick="delC(\''+x.id+'\')">حذف</button></div></div>'}).join("");
+  return '<div class="card"><div class="h3" style="margin:0;font-size:18px">الرصيد</div><div class="big '+(run>=0?"g":"r")+'">'+mc(run)+'</div><div class="mut" style="font-size:15px;margin-top:8px">الدخل: <span class="g">'+mc(rc)+'</span><br>المصروف: <span class="r">'+mc(sp)+'</span></div><div class="two"><button class="bt g" onclick="cS(\'r\')">+ دخل</button><button class="bt r" onclick="cS(\'s\')">− مصروف</button></div></div>'+
+  '<div class="tiles"><button class="tl" onclick="exS()"><i><svg viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg></i>تصدير Excel</button></div>'+
+  '<div class="h3">المعاملات ('+S.c.length+')</div><div class="card" style="padding:4px 16px">'+(h||'<p class="mut">لا توجد معاملات</p>')+'</div>'}
+function cS(k){pend=null;sheet('<div class="h3" style="margin-top:0">'+(k=="r"?"+ دخل":"− مصروف")+'</div><input id="ca" type="number" inputmode="decimal" placeholder="المبلغ"><input id="cn" placeholder="البيان (مثال: بنزين)"><input id="cg" placeholder="التصنيف (مثال: مواصلات)" list="cgl"><datalist id="cgl">'+cats().map(function(c){return '<option value="'+esc(c)+'">'}).join("")+'</datalist><div class="ph"><label class="bt t">📷 تصوير الفاتورة<input type="file" accept="image/*" capture="environment" hidden onchange="pic(this)"></label><label class="bt t">🖼️ من المعرض<input type="file" accept="image/*" hidden onchange="pic(this)"></label></div><img id="pv" alt=""><div class="mut" style="margin:6px 0">التاريخ والوقت يُسجَّلان تلقائيًا</div><button class="bt '+(k=="r"?"g":"r")+'" style="width:100%" onclick="addC(\''+k+'\')">حفظ</button>')}
+function pic(inp){
+  var f=inp.files[0];if(!f)return;var im=new Image(),u=URL.createObjectURL(f);
+  im.onload=function(){var s=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);pend=c.toDataURL("image/jpeg",.6);URL.revokeObjectURL(u);var v=$("pv");v.src=pend;v.style.display="block"};
+  im.src=u}
+function addC(k){var a=Math.round(parseFloat($("ca").value)*100);if(!(a>0))return toast("اكتب مبلغًا صحيحًا");S.c.push({id:id(),k:k,a:a,no:$("cn").value.trim(),cg:$("cg").value.trim(),im:pend,d:Date.now()});save();cl();render()}
+function delC(i){if(confirm("حذف المعاملة؟")){S.c=S.c.filter(function(x){return x.id!=i});save();render()}}
+function big(i){var x=S.c.find(function(y){return y.id==i});$("ovi").src=x.im;$("ov").style.display="flex"}
+function exS(){sheet('<div class="h3" style="margin-top:0">تصدير Excel</div><div class="mut">من تاريخ</div><input id="fr" type="date"><div class="mut">إلى تاريخ</div><input id="to" type="date"><div class="mut">اتركهما فارغين لتصدير الكل</div><button class="bt p" style="width:100%;margin-top:8px" onclick="expX()">تصدير</button>')}
+function expC(){
+  var f=$("fr").value?new Date($("fr").value+"T00:00:00").getTime():0,t=$("to").value?new Date($("to").value+"T23:59:59").getTime():Infinity;
+  var rows=S.c.filter(function(x){return x.d>=f&&x.d<=t}).sort(function(a,b){return a.d-b.d});
+  if(!rows.length)return toast("لا توجد حركات في الفترة");
+  var r=[["التاريخ","الوقت","البيان","دخل","مصروف","الرصيد","فاتورة مرفقة"]],b=0,rc=0,sp=0;
+  rows.forEach(function(x){var d=new Date(x.d);b+=x.k=="r"?x.a:-x.a;if(x.k=="r")rc+=x.a;else sp+=x.a;
+    r.push([d.toLocaleDateString("en-GB"),d.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"}),x.no,x.k=="r"?x.a/100:"",x.k=="s"?x.a/100:"",b/100,x.im?"نعم":"لا"])});
+  var wb=XLSX.utils.book_new(),ws=XLSX.utils.aoa_to_sheet(r);ws["!cols"]=[{wch:12},{wch:8},{wch:28},{wch:12},{wch:12},{wch:12},{wch:12}];
+  XLSX.utils.book_append_sheet(wb,ws,"النقدية");
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([["إجمالي الدخل",rc/100],["إجمالي المصروف",sp/100],["الرصيد",(rc-sp)/100]]),"ملخص");
+  cl();xl(wb,"cash-book.xlsx")}
+
+/* ===== المزيد ===== */
+function more(){
+  return '<div class="card"><div class="mut">اسم النشاط</div><input value="'+esc(S.bn)+'" onchange="S.bn=this.value;save()"><div class="mut">العملة</div><input value="'+esc(S.cu)+'" onchange="S.cu=this.value;save()"></div>'+
+  '<div class="h3">Excel</div><div class="tiles" style="flex-wrap:wrap"><label class="tl"><i><svg viewBox="0 0 24 24"><path d="M12 15V4M7 8l5-5 5 5M5 20h14"/></svg></i>استيراد عملاء<input type="file" accept=".xlsx,.xls,.csv" hidden onchange="imp(this)"></label><button class="tl" onclick="tpl()"><i><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h6"/></svg></i>نموذج الاستيراد</button><button class="tl" onclick="expP()"><i><svg viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg></i>تصدير العملاء</button></div>'}
+function xl(wb,name){
+  var blob=new Blob([XLSX.write(wb,{type:"array",bookType:"xlsx"})]);
+  claude.use("downloads").then(function(d){
+    if(!d)return toast("التصدير غير متاح هنا");
+    d.save({filename:name,data:blob}).then(function(){toast("تم الحفظ")}).catch(function(e){if(e&&e.code!="declined")toast("تعذر الحفظ")})
+  }).catch(function(){toast("التصدير غير متاح هنا")})}
+function tpl(){var wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([["الاسم","الموبايل","النوع","الرصيد الافتتاحي"],["أحمد محمد","01000000000","عميل",1500]]),"عملاء");xl(wb,"نموذج-العملاء.xlsx")}
+function expP(){var r=[["الاسم","الموبايل","النوع","أعطيت (+) / أخذت (-)"]];S.p.forEach(function(p){r.push([p.n,p.ph,p.ty=="s"?"مورد":"عميل",bal(p.id)/100])});var wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(r),"عملاء");xl(wb,"العملاء.xlsx")}
+function imp(inp){
+  var f=inp.files[0];if(!f)return;var rd=new FileReader();
+  rd.onload=function(){try{
+    var wb=XLSX.read(rd.result,{type:"array"}),rows=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]),n=0,sk=0;
+    function g(o,keys){for(var k in o){for(var i=0;i<keys.length;i++)if(k.toLowerCase().indexOf(keys[i])>-1)return o[k]}return ""}
+    rows.forEach(function(o){
+      var name=String(g(o,["اسم","name"])).trim();if(!name){sk++;return}
+      var ph=String(g(o,["موبايل","هاتف","phone","تليفون"])).trim(),ty=/مورد|supplier/i.test(String(g(o,["نوع","type"])))?"s":"c",op=parseFloat(g(o,["رصيد","balance","opening"]));
+      if(S.p.find(function(p){return p.n==name&&p.ph==ph})){sk++;return}
+      var pid=id();S.p.push({id:pid,n:name,ph:ph,ty:ty,c:Date.now()});n++;
+      if(op)S.t.push({id:id(),p:pid,k:op>0?"gave":"got",a:Math.round(Math.abs(op)*100),no:"رصيد افتتاحي",d:Date.now()})
+    });
+    save();go(1);toast("تم استيراد "+n+" وتجاهل "+sk)
+  }catch(e){toast("الملف غير صالح")}};
+  rd.readAsArrayBuffer(f)}
+function cats(){var a=[];S.c.forEach(function(x){if(x.cg&&a.indexOf(x.cg)<0)a.push(x.cg)});return a}
+function dl(blob,name){
+  claude.use("downloads").then(function(d){
+    if(!d)return toast("التصدير غير متاح هنا");
+    d.save({filename:name,data:blob}).then(function(){toast("تم الحفظ")}).catch(function(e){if(e&&e.code!="declined")toast("تعذر الحفظ")})
+  }).catch(function(){toast("التصدير غير متاح هنا")})}
+function expX(){
+  var f=$("fr").value?new Date($("fr").value+"T00:00:00").getTime():0,t=$("to").value?new Date($("to").value+"T23:59:59").getTime():Infinity;
+  var rows=S.c.filter(function(x){return x.d>=f&&x.d<=t}).sort(function(a,b){return a.d-b.d});
+  if(!rows.length)return toast("لا توجد حركات في الفترة");
+  var cs=[];rows.forEach(function(x){if(x.k=="s"){var c=x.cg||"أخرى";if(cs.indexOf(c)<0)cs.push(c)}});
+  var H=["التاريخ","البيان","المستلم","المصروف"].concat(cs,["الرصيد","الفاتورة"]),n=H.length;
+  var wb=new ExcelJS.Workbook();wb.calcProperties={fullCalcOnLoad:true};var ws=wb.addWorksheet("دفتر العهدة",{views:[{rightToLeft:true,state:"frozen",ySplit:3}],pageSetup:{orientation:"landscape",fitToPage:true,fitToWidth:1,fitToHeight:0}});
+  var navy="FF1F3A5F",lite="FF9DB7DC",pale="FFEAF1FB",tc="FFD9E4F2",bd={style:"thin",color:{argb:"FF9AA7B8"}},B={top:bd,left:bd,bottom:bd,right:bd};
+  ws.columns=H.map(function(h,i){return{width:i==0?20:i==1?30:i==n-1?15:14}});
+  function box(r1,c1,r2,c2,v,fill,sz){ws.mergeCells(r1,c1,r2,c2);var c=ws.getCell(r1,c1);c.value=v;c.font={bold:true,size:sz,color:{argb:"FFFFFFFF"}};c.fill={type:"pattern",pattern:"solid",fgColor:{argb:fill}};c.alignment={horizontal:"center",vertical:"middle",wrapText:true};c.border=B;return c}
+  function CL(i){var s="";while(i>0){var k=(i-1)%26;s=String.fromCharCode(65+k)+s;i=(i-k-1)/26}return s}
+  var rc=0,sp=0,b=0,tot={},r=4;
+  rows.forEach(function(x){if(x.k=="r")rc+=x.a;else{sp+=x.a;var c=x.cg||"أخرى";tot[c]=(tot[c]||0)+x.a}});
+  box(1,1,1,n-2,S.bn,navy,20);box(1,n-1,1,n,"رصيد العهدة",navy,12);
+  box(2,1,2,n-2,"دفتر العهدة (Petty Cash Book) — العملة: "+S.cu,lite,13);box(2,n-1,2,n,(rc-sp)/100,lite,14).numFmt="#,##0.00";
+  ws.getRow(1).height=34;ws.getRow(2).height=24;ws.getRow(3).height=32;
+  H.forEach(function(h,i){box(3,i+1,3,i+1,h,navy,12)});
+  rows.forEach(function(x){
+    var d=new Date(x.d),g=x.k=="r";b+=g?x.a:-x.a;
+    var vals=[d.toLocaleDateString("en-GB")+" "+d.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"}),x.no||"",g?x.a/100:null,g||!cs.length?null:{formula:"SUM("+CL(5)+r+":"+CL(4+cs.length)+r+")",result:x.a/100}];
+    cs.forEach(function(c){vals.push(!g&&(x.cg||"أخرى")==c?x.a/100:null)});
+    vals.push({formula:(r==4?"":CL(n-1)+(r-1)+"+")+"C"+r+"-D"+r,result:b/100},null);
+    var row=ws.getRow(r);
+    vals.forEach(function(v,i){var c=row.getCell(i+1);c.value=v;c.border=B;c.alignment={horizontal:i==1?"right":"center",vertical:"middle",wrapText:true};if(i>=2&&i<n-1)c.numFmt="#,##0.00";if(r%2)c.fill={type:"pattern",pattern:"solid",fgColor:{argb:pale}}});
+    row.getCell(3).font={bold:true,color:{argb:"FF1E7B45"}};row.getCell(4).font={bold:true,color:{argb:"FFC0392B"}};row.getCell(n-1).font={bold:true};
+    if(x.im){var im=wb.addImage({base64:x.im,extension:"jpeg"});ws.addImage(im,{tl:{col:n-1+0.1,row:r-1+0.1},ext:{width:70,height:70}});row.height=56}else row.height=26;
+    r++});
+  function F(i,v){return{formula:"SUM("+CL(i)+"4:"+CL(i)+(r-1)+")",result:v}}
+  var tv=["الإجمالي","",F(3,rc/100),F(4,sp/100)].concat(cs.map(function(c,j){return F(5+j,(tot[c]||0)/100)}),[{formula:"C"+r+"-D"+r,result:(rc-sp)/100},""]),tr=ws.getRow(r);
+  tv.forEach(function(v,i){var c=tr.getCell(i+1);c.value=v;c.font={bold:true,size:12};c.fill={type:"pattern",pattern:"solid",fgColor:{argb:tc}};c.border={top:{style:"medium",color:{argb:navy}},left:bd,bottom:{style:"medium",color:{argb:navy}},right:bd};c.alignment={horizontal:"center",vertical:"middle"};if(i>=2&&i<n-1)c.numFmt="#,##0.00"});
+  tr.height=28;ws.mergeCells(r,1,r,2);ws.getCell(2,n-1).value={formula:CL(n-1)+r,result:(rc-sp)/100};
+  cl();
+  wb.xlsx.writeBuffer().then(function(buf){dl(new Blob([buf]),"petty-cash.xlsx")}).catch(function(){toast("تعذر إنشاء الملف")})}
+render();
+if("serviceWorker" in navigator&&/^https?:/.test(location.protocol)){navigator.serviceWorker.register("sw.js").catch(function(){})}
+</script>
+</body>
+</html>
